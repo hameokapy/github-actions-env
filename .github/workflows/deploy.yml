@@ -39,5 +39,5 @@ jobs:
         run: |        
           echo "MONGODB_USERNAME: ${{ env.MONGODB_USERNAME }}"
           # the above will not be available, because that is env var of test job
-          echo "MONGODB_USERNAME: $MONGODB_USERNAME"
+          echo "MONGODB_USERNAME: $MONGODB_DB_NAME"
           # the above will be available, because that is workflow env var
