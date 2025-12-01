@@ -8,6 +8,7 @@ env:
   MONGODB_DB_NAME: gha-demo
 jobs:
   test:
+    environment: testing
     env: 
       MONGODB_CLUSTER_ADDRESS: cluster0.uf8lfa8.mongodb.net
       MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
@@ -42,4 +43,3 @@ jobs:
           echo "MONGODB_USERNAME: $MONGODB_DB_NAME"
         # the value of MONGODB_USERNAME will not be available, because that is env var of test job
         # the value MONGODB_DB_NAME will be available, because that is workflow env var
-        # sau khi dung secret, github recognize cai env var kia la secret, se hide no dang ***
