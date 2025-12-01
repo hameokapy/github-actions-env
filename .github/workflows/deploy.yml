@@ -10,8 +10,8 @@ jobs:
   test:
     env: 
       MONGODB_CLUSTER_ADDRESS: cluster0.uf8lfa8.mongodb.net
-      MONGODB_USERNAME: hameokapy_db_user
-      MONGODB_PASSWORD: VWGESndJuL6EVkIv
+      MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
+      MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
       PORT: 8080
     runs-on: ubuntu-latest
     steps:
@@ -31,6 +31,7 @@ jobs:
       - name: Output information
         run: |
           echo "MONGODB_USERNAME: ${{ env.MONGODB_USERNAME }}"
+        #sau khi dung secret, github recognize cai env var kia la secret, se hide no dang ***
   deploy:
     needs: test
     runs-on: ubuntu-latest
@@ -39,5 +40,6 @@ jobs:
         run: |        
           echo "MONGODB_USERNAME: ${{ env.MONGODB_USERNAME }}"
           echo "MONGODB_USERNAME: $MONGODB_DB_NAME"
-        # the env.MONGODB_USERNAME will not be available, because that is env var of test job
-        # the MONGODB_DB_NAME will be available, because that is workflow env var
+        # the value of MONGODB_USERNAME will not be available, because that is env var of test job
+        # the value MONGODB_DB_NAME will be available, because that is workflow env var
+        # sau khi dung secret, github recognize cai env var kia la secret, se hide no dang ***
