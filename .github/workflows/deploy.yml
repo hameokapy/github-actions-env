@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Run server
-        run: npm start & npx wait-on http://127.0.0.1:$PORT
+        run: npm start & npx wait-on http://127.0.0.1:$PORT #use PORT var declared above
       - name: Run tests
         run: npm test
       - name: Output information
@@ -38,6 +38,6 @@ jobs:
       - name: Output information
         run: |        
           echo "MONGODB_USERNAME: ${{ env.MONGODB_USERNAME }}"
-          # the above will not be available, because that is env var of test job
           echo "MONGODB_USERNAME: $MONGODB_DB_NAME"
-          # the above will be available, because that is workflow env var
+        # the env.MONGODB_USERNAME will not be available, because that is env var of test job
+        # the MONGODB_DB_NAME will be available, because that is workflow env var
